@@ -39,7 +39,9 @@ import {
    
      password:''
     })
-    const {handleImg,imgurl}= previewimg();
+
+    const {handleImageChange,imgUrl}= previewimg();
+
     const fileref= useRef(null);
     async function handlesubmit(e){
       e.preventDefault();
@@ -48,7 +50,9 @@ import {
         const res= await axios.put(`/api/users/update/${user._id}`,{
        
           ...input,
-           profilePic:imgurl
+
+           profilePic:imgUrl
+
          });
         
         localStorage.setItem('user',JSON.stringify(res.data));
@@ -84,7 +88,9 @@ import {
        
         w={'full'}
         h={'full'}
-        padding={'60px'}
+
+        paddingTop={'60px'}
+
       
         my={6}
        >
@@ -105,7 +111,9 @@ import {
            
             <Stack direction={['column', 'row']} spacing={6}>
               <Center>
-                <Avatar size="xl" src={imgurl||user.profilePic}/>
+
+                <Avatar size="xl" src={imgUrl||user.profilePic}/>
+
                 
              
               </Center>
@@ -116,7 +124,9 @@ import {
                   change avatar 
                
                </Button>
-               <Input id='t' type="file" hidden ref={fileref} onChange={handleImg}/> 
+
+               <Input id='t' type="file" hidden ref={fileref} onChange={handleImageChange}/> 
+
                 
               </Center>
             </Stack>

@@ -1,39 +1,27 @@
-import { useToast } from '@chakra-ui/react';
-import React, { useState } from 'react'
 
-const previewimg = () => {
-    const toast= useToast()
-    const [imgurl,setImgurl]= useState(null)
-    function handleImg(e){
-        const file = e.target.files[0];
-      
-        
-        if(file&& file.type.startsWith('image/') ){
-            const reader = new FileReader();
-            reader.onload=(e)=>{
-                setImgurl(e.target.result)
-              
-            }
-            reader.readAsDataURL(file)
-           
-            
-        }
-        else{
-            toast({
-                title: 'invalid file type',
-                status: 'error',
-                duration: 9000,
-                isClosable: true,
-              })
-              setImgurl(null)
-        }  
-       
-        
+import { useState } from "react";
+import useShowToast from "./useShowToast";
 
-        
-    }
-  return {handleImg,imgurl};
-  
-}
+const usePreviewImg = () => {
+	const [imgUrl, setImgUrl] = useState(null);
+	const showToast = useShowToast();
+	const handleImageChange = (e) => {
+		const file = e.target.files[0];
+		if (file && file.type.startsWith("image/")) {
+			const reader = new FileReader();
 
-export default previewimg
+			reader.onloadend = () => {
+				setImgUrl(reader.result);
+			};
+
+			reader.readAsDataURL(file);
+		} else {
+			showToast("Invalid file type", " Please select an image file", "error");
+			setImgUrl(null);
+		}
+	};
+	return { handleImageChange, imgUrl, setImgUrl };
+};
+
+export default usePreviewImg;
+

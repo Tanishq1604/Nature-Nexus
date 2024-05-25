@@ -1,15 +1,14 @@
-import { Avatar, Box, Flex, Image, Text } from '@chakra-ui/react';
+import { Avatar, Box, Button, Flex, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import Actions from './Actions';
 
-
-const UserPost = ({ postId, user, likes, replies, postImg, postTitle }) => {
+const ContractCard = ({ postId, user, likes, replies, postImg, postTitle }) => {
   const [liked, setLiked] = React.useState(false);
 
   if (!user) {
-    return null; // Don't render if user data is not available
+    return null; 
   }
 
   return (
@@ -73,6 +72,8 @@ const UserPost = ({ postId, user, likes, replies, postImg, postTitle }) => {
             <Box w={0.5} h={0.5} borderRadius={"full"} bg={"gray.light"}></Box>
             <Text color={"gray.light"} fontSize='sm'>
               {likes + (liked ? 1 : 0)} likes
+              <Button bg={"gray.light"}>accept</Button>
+              <Button bg={"gray.light"}>reject</Button>
             </Text>
           </Flex>
         </Flex>
@@ -81,7 +82,7 @@ const UserPost = ({ postId, user, likes, replies, postImg, postTitle }) => {
   );
 };
 
-export default UserPost;
+export default ContractCard;
 
 
 
