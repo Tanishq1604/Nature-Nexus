@@ -1,4 +1,4 @@
-import { Avatar, Box, Flex, Image, Text } from '@chakra-ui/react';
+import { Avatar, Box, Button, Flex, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -78,6 +78,7 @@ const UserPost = ({ postId, user, likes, replies, postImg, postTitle }) => {
         </Flex>
       </Flex>
     </Link>
+
   );
 };
 
