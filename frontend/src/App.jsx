@@ -14,6 +14,8 @@ import Sidebar from "./components/sb"
 import { Flex } from "@chakra-ui/react"
 import CreatePost from "./components/Cp"
 import Contracts from "./pages/Contracts"
+import MarketPlace from "./pages/MarketPlace"
+import CreatePostmarket from "./components/Cpfm"
 
 
 
@@ -44,6 +46,7 @@ function App() {
       <Route path="/:username/post/:pid" element={user? <Postpage /> : <Navigate to={'/auth'}/>} />
       
       <Route path="/explore" element={user? <><Explore/><CreatePost /></> : <Navigate to={'/auth'}/>} />
+      <Route path="/marketplace" element={!user?  <Navigate to={'/auth'}/>: <><MarketPlace/> <CreatePostmarket/></>} />
    
       </Routes>
    </Flex>)
