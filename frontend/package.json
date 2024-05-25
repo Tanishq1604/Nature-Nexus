@@ -16,10 +16,9 @@
     "@emotion/styled": "^11.11.5",
     "axios": "^1.6.8",
     "clsx": "^2.1.1",
-
     "date-fns": "^3.6.0",
-
     "framer-motion": "^11.2.6",
+    "mappls-web-maps": "^3.0.4",
     "quill": "2.0.1",
     "quilljs": "^0.18.1",
     "react": "^18.2.0",

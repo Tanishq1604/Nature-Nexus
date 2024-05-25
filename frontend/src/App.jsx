@@ -16,6 +16,7 @@ import CreatePost from "./components/Cp"
 import Contracts from "./pages/Contracts"
 import MarketPlace from "./pages/MarketPlace"
 import CreatePostmarket from "./components/Cpfm"
+import Trashout from "./pages/trashOut"
 
 
 
@@ -47,6 +48,7 @@ function App() {
       
       <Route path="/explore" element={user? <><Explore/><CreatePost /></> : <Navigate to={'/auth'}/>} />
       <Route path="/marketplace" element={!user?  <Navigate to={'/auth'}/>: <><MarketPlace/> <CreatePostmarket/></>} />
+      <Route path="/trashout" element={!user?  <Navigate to={'/auth'}/>: <Trashout/>} />
    
       </Routes>
    </Flex>)
