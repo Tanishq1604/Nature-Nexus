@@ -5,7 +5,6 @@ import { useRecoilValue } from "recoil"
 import { userDataAtom } from "./atoms/userAtom"
 import HomePage from "./pages/HomePage"
 
-
 import UserProfileEdit from "./pages/UpdatePage"
 import Postpage from "./pages/Postpage"
 import Explore from "./pages/Explore"
@@ -13,7 +12,7 @@ import Sidebar from "./components/sb"
 import { Flex } from "@chakra-ui/react"
 import CreatePost from "./components/Cp"
 import Contracts from "./pages/Contracts"
-
+import Karma_button from "./pages/Karma"
 
 function App() {
   const user= useRecoilValue(userDataAtom);
@@ -32,7 +31,7 @@ function App() {
       <Route path="/:username/post/:pid" element={user? <Postpage /> : <Navigate to={'/auth'}/>} />
       
       <Route path="/explore" element={user? <><Explore/><CreatePost /></> : <Navigate to={'/auth'}/>} />
-   
+      <Route path="/karma" element={!user?  <Navigate to={'/auth'}/>: <Karma_button/>} />
       </Routes>
    </Flex>
   )

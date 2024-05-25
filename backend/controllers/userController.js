@@ -62,7 +62,7 @@ export const signinUser= async (req,res)=>{
             username: user.username,
             bio: user.bio,
             profilePic: user.profilePic,
-            usertype: savedUser.usertype,
+            usertype: user.usertype,
         })
 
       
