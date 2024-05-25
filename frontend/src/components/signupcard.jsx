@@ -14,7 +14,9 @@ import {
     useColorModeValue,
     Link,
    
-    useToast
+    useToast,
+    RadioGroup,
+    Radio
   } from '@chakra-ui/react'
   import { useState } from 'react'
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
@@ -26,6 +28,7 @@ import { userDataAtom } from '../atoms/userAtom';
   export default function Signupcard() {
     const setuser= useSetRecoilState(userDataAtom);
     const toast = useToast();
+    const[value,setValue]= useState('user');
 
     const [showPassword, setShowPassword] = useState(false)
     const setAuth= useSetRecoilState(authScreenAtom);
@@ -33,7 +36,8 @@ import { userDataAtom } from '../atoms/userAtom';
      name:'',
      username:'',
     
-     password:''
+     password:'',
+   
     })
 
 
@@ -41,11 +45,13 @@ import { userDataAtom } from '../atoms/userAtom';
 
      
       const {name,username,password}=imput;
+      console.log(value);
       const data={
         name,
         username,
       
-        password
+        password,
+        usertype:value
       }
       try{
         const res= await axios.post('/api/users/signup',data);
@@ -92,7 +98,7 @@ import { userDataAtom } from '../atoms/userAtom';
         align={'center'}
         justify={'center'}
        >
-        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+        <Stack spacing={8} mx={'auto'} maxW={'lg'} px={6}>
           <Stack align={'center'}>
             <Heading fontSize={'4xl'} textAlign={'center'}>
               Sign up
@@ -140,6 +146,7 @@ import { userDataAtom } from '../atoms/userAtom';
                   </FormControl>
                 </Box>
               </HStack>
+
            
               <FormControl id="password" isRequired>
                 <FormLabel>Password</FormLabel>
@@ -164,6 +171,13 @@ import { userDataAtom } from '../atoms/userAtom';
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
+              <RadioGroup onChange={setValue} value={value}>
+      <HStack >
+        <Radio value='user'>user</Radio>
+        <Radio value='ngo'>ngo</Radio>
+       
+      </HStack>
+    </RadioGroup>
               <Stack spacing={10} pt={2}>
                 <Button
                 onClick={submitdata}

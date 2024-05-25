@@ -1,46 +1,45 @@
 import { Post, User } from "../db/connectDB.js";
 
-export const createPost= async  (req,res)=>{
-    const {postedBy,text,img}= req.body;
-    try{
-        if(!postedBy || !text){
-            res.status(404).json({message:"posted by and text is required "});
-        }
-        const user =await User.findById(postedBy);
-        if(!user){
-            res.status(404).json({message:"user not found "});
-        }
-        if(user._id.toString()!==req.user._id.toString()){
-            res.status(404).json({message:"user unauthenticated "});
+import { v2 as cloudinary } from "cloudinary";
 
+export const createPost = async (req, res) => {
+	try {
+		const { postedBy, text ,lat,long} = req.body;
+		let { img } = req.body;
 
-        }
-        const maxLength= 500;
-        if(text.length>maxLength){
-            res.status(404).json({message:"text is too long "});
-        }
-        const post = new Post({
-            postedBy,text,img
-        })
-        const savedPost = await post.save();
-        res.status(201).json({
-            message:"post saved successfully",
-            savedPost
-        })
+		if (!postedBy || !text) {
+			return res.status(400).json({ error: "Postedby and text fields are required" });
+		}
 
+		const user = await User.findById(postedBy);
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
 
+		if (user._id.toString() !== req.user._id.toString()) {
+			return res.status(401).json({ error: "Unauthorized to create post" });
+		}
 
+		const maxLength = 500;
+		if (text.length > maxLength) {
+			return res.status(400).json({ error: `Text must be less than ${maxLength} characters` });
+		}
 
+		if (img) {
+			const uploadedResponse = await cloudinary.uploader.upload(img);
+			img = uploadedResponse.secure_url;
+		}
 
+		const newPost = new Post({ postedBy, text, img ,lat,long });
+		await newPost.save();
 
+		res.status(201).json(newPost);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+		console.log(err);
+	}
+};
 
-
-    }
-    catch(e){
-        res.status(404).json({message:e.message});
-    }
-
-}
 
 export const getPost =async  (req, res) =>{
     try{
@@ -158,6 +157,19 @@ export const myfeed =async  (req, res) =>{
        }
        res.status(200).json({message:'posts found successfully',posts});
 
+    }
+    catch(error){
+        res.status(404).json({message:error.message})
+    }
+}
+export const bulkposts =async  (req, res) => {
+    try{
+        console.log("bulk");
+        const posts = await Post.find({}).sort({createdAt:-1});
+        if(!posts){
+            res.status(404).json({message:"posts not found "});
+        }
+        res.status(200).json({message:'posts found successfully',posts});
     }
     catch(error){
         res.status(404).json({message:error.message})

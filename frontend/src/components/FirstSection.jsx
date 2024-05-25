@@ -59,7 +59,7 @@ import {
                 _hover={{
                   bg: 'green.500',
                 }}>
-              <Link to={'/posts'}>
+              <Link to={'/explore'}>
                 Go to Blogs
               </Link>
               </Button>

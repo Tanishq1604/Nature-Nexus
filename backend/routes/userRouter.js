@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {signupUser,signinUser, logoutUser, followunfollowUser, updataUser, getUserprofile} from '../controllers/userController.js';
+import {signupUser,signinUser, logoutUser, followunfollowUser, updataUser, getUserprofile, getUserfromId} from '../controllers/userController.js';
 import { protectedroute } from "../middleware/protectedroute.js";
 import cookieParser from "cookie-parser";
 
@@ -15,5 +15,6 @@ router.post('/signin',signinUser)
 router.post('/logout',logoutUser)
 router.post('/follow/:id',protectedroute,followunfollowUser)
 router.put('/update/:id',protectedroute,updataUser)
+router.get('/:id',getUserfromId)
 
 export default router;

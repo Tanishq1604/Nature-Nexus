@@ -25,14 +25,14 @@ import {
   Center,
   Image,
   useToast,
-  Input,
+
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon,HamburgerIcon, CloseIcon  } from '@chakra-ui/icons';
-import { Link} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 // Links for navigation
 const Links = [
-  { name: 'Explore', path: '/' },
+  { name: 'Explore', path: '/explore' },
   { name: 'About', path: '/about' },
   { name: 'Contact', path: '/contracts' },
   { name: 'ecoily', path: '/ecoily' }
@@ -58,6 +58,7 @@ const NavLink = ({ name, path }) => (
 
 
 export default function Header() {
+  const navigate= useNavigate();
  
   
 
@@ -69,7 +70,9 @@ export default function Header() {
 const setuser= useSetRecoilState(userDataAtom);
 
 
-
+function updatenav(){
+  navigate('/update');
+}
 
 async function handlelogout(){
  
@@ -103,6 +106,7 @@ async function handlelogout(){
  
   return (
     <>
+    {user?(
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}  position='fixed' top={'0'} w={'100%'} zIndex={'10'}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
         <IconButton
@@ -155,7 +159,7 @@ async function handlelogout(){
                    bg={'green.400'}
                   name={`${user.name}`}
                     size={'sm'}
-                    src={''}
+                    src={user.profilePic}
                   />
                 </MenuButton>
                 <MenuList zIndex={'1000'}alignItems={'center'}>
@@ -164,8 +168,9 @@ async function handlelogout(){
                     <Avatar
                     bg={'green.400'}
                     name={`${user.name}`}
+                    src={user.profilePic}
                       size={'2xl'}
-                      src={''}
+                     
                     />
                   </Center>
                   <br />
@@ -174,7 +179,7 @@ async function handlelogout(){
                   </Center>
                   <br />
                   <MenuDivider />
-                  <MenuItem>Update profile</MenuItem>
+                  <MenuItem onClick={updatenav}>Update profile</MenuItem>
                   <MenuItem>My blog</MenuItem>
                   <MenuItem onClick={handlelogout}>Logout</MenuItem>
                 </MenuList>
@@ -182,7 +187,13 @@ async function handlelogout(){
             </Stack>
           </Flex>
         </Flex>
-      </Box>
+      </Box>):(<Flex w={'100%'} justifyContent={'center' } alignItems={'center'} p={5}>
+        <Button onClick={toggleColorMode}>
+                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+              </Button>
+
+
+      </Flex>)}
     </>
   );
 }
