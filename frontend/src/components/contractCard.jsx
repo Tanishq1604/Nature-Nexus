@@ -14,13 +14,15 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
+import { useRecoilState } from 'recoil';
+import { karmaatom } from '../atoms/karmaAtom';
 
 const ContractCard = ({ postId, user, likes, replies, postImg, postTitle }) => {
   const [hide, setHide] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [connected, setConnected] = useState(false);
   const [buttonText, setButtonText] = useState("Connect to Freighter");
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useRecoilState(karmaatom);
   const [publicKey, setPublicKey] = useState("");
   let key = retrievePublicKey();
   key.then(publicKey => {
@@ -41,8 +43,11 @@ const ContractCard = ({ postId, user, likes, replies, postImg, postTitle }) => {
         alert("Download Frieghter Extension in your browser"); 
       }
   }
-  const handleSubmit = () => {
+  async function handleSubmit ()  {
     console.log("Submitted value:", inputValue);
+    const data=
+
+
     onClose();
     accept();
   }
