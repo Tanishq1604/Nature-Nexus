@@ -35,6 +35,7 @@ export const signupUser= async (req,res)=>{
                 profilePic: savedUser.profilePic,
 
                 usertype: savedUser.usertype,
+                karma:savedUser.karma,
 
               
              
@@ -64,12 +65,14 @@ export const signinUser= async (req,res)=>{
 
         res.status(200).json({
             message: 'logged in successfully',
+            usertype:user.usertype,
            
             _id: user._id,
             name: user.name,
             username: user.username,
             bio: user.bio,
             profilePic: user.profilePic,
+            karma: user.karma
 
 
         })
@@ -157,8 +160,10 @@ export const updataUser = async (req,res)=>{
        res.status(200).json({message:"saved",
        _id: savedUser._id,
        name: savedUser.name,
+       karma: savedUser.karma,
        username: savedUser.username,
        bio: savedUser.bio,
+       usertype: savedUser.usertype,
        profilePic: savedUser.profilePic,
        followers: savedUser.followers,
        following: savedUser.following,
@@ -214,7 +219,16 @@ export const showkarma = async (req, res) => {
             user.karma += karmaToAdd;
         }
         await user.save();
-        res.json(user);
+        res.json({
+            message:"Successfully added",
+            karma: user.karma,
+            _id: user._id,
+            name: user.name,
+            username: user.username,
+            bio: user.bio,
+            profilePic: user.profilePic,
+            usertype:user.usertype,
+        });
     } catch (err) {
         res.status(500).json({ error: 'Internal server error' ,e:err.message});
     }

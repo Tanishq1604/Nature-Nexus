@@ -14,11 +14,14 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { karmaatom } from '../atoms/karmaAtom';
+import axios from 'axios';
+import { userDataAtom } from '../atoms/userAtom';
 
 const ContractCard = ({ postId, user, likes, replies, postImg, postTitle }) => {
   const [hide, setHide] = useState(false);
+  const [user1,setuser1]= useRecoilState(userDataAtom)
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [connected, setConnected] = useState(false);
   const [buttonText, setButtonText] = useState("Connect to Freighter");
@@ -45,7 +48,12 @@ const ContractCard = ({ postId, user, likes, replies, postImg, postTitle }) => {
   }
   async function handleSubmit ()  {
     console.log("Submitted value:", inputValue);
-    const data=
+    const data= await axios.put(`/api/users/karma/${user._id}`,{
+      karma:inputValue
+    });
+    console.log(data);
+    
+
 
 
     onClose();
