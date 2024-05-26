@@ -27,7 +27,7 @@ const Explore = () => {
     const fetchUsers = async () => {
       try {
         const userIds = Array.from(new Set(posts.map(post => post.postedBy).filter(id => id !== undefined)));
-        const userResponses = await Promise.all(userIds.map(id => axios.get(`http://localhost:4000/api/users/${id}`)));
+        const userResponses = await Promise.all(userIds.map(id => axios.get(`https://nature-nexus-qdw6.onrender.com/api/users/${id}`)));
         const userData = userResponses.map(res => res.data.user);
         const userMap = userData.reduce((acc, user) => {
           acc[user._id] = user;
@@ -51,11 +51,11 @@ const Explore = () => {
   return (
     <Flex justifyContent={'center'} alignItems={'center'} py={10}>
       <VStack maxW={'600px'} py={10}>
-        {posts.map(post => {
+        {posts.map((post,i) => {
           const user = users[post.postedBy];
           return (
             <UserPost
-              key={post._id}
+              key={i}
               user={user}
               postId={post._id}
               likes={post.likes}
