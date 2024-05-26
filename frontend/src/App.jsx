@@ -54,6 +54,7 @@ function App() {
       <Route path="/marketplace" element={!user?  <Navigate to={'/auth'}/>: <><MarketPlace/> <CreatePostmarket/></>} />
       <Route path="/trashout" element={!user?  <Navigate to={'/auth'}/>: <Trashout/>} />
 
+
       <Route path="/karma" element={!user?  <Navigate to={'/auth'}/>: <Karma_button/>} />
 
       </Routes>

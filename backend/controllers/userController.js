@@ -194,4 +194,28 @@ export const getUserfromId=async (req, res) => {
         res.status(400).json({message: error.message})
     }
 }
+export const showkarma = async (req, res) => {
+    const userId = req.params.id;
+    console.log('1');
+    const  karmaToAdd  = Number(req.body.karma);
+    console.log('2');
 
+    if (typeof karmaToAdd !== 'number') {
+        return res.status(400).json({ error: 'karmaToAdd must be a number' });
+      console.log('3');
+    }
+
+    try {
+        const user = await User.findById(userId);
+        console.log(user);
+        if (!user) {
+            user = new User({ userId, karma: karmaToAdd });
+        } else {
+            user.karma += karmaToAdd;
+        }
+        await user.save();
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ error: 'Internal server error' ,e:err.message});
+    }
+}
