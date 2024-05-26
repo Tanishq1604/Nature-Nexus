@@ -1,3 +1,4 @@
+
 import { Flex, VStack } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import UserPost from '../components/UserPost';
@@ -70,6 +71,7 @@ const Explore = () => {
 };
 
 export default Explore;
+
 
 
 

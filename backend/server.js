@@ -3,14 +3,19 @@ const app = express();
 import {v2 as cloudinary} from 'cloudinary';
 import cors from 'cors';
 app.use(cors());
+
 import bodyParser from 'body-parser';
+
           
 
 import userRouter from './routes/userRouter.js'
 import postRouter from './routes/postRouter.js'
 import {User,Post }from './db/connectDB.js'
+import productRouter from './routes/productRoute.js'
+
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -31,6 +36,7 @@ cloudinary.config({
 
 app.use('/api/users',userRouter);
 app.use('/api/posts',postRouter);
+app.use('/api/product',productRouter);
 
 
 

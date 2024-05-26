@@ -4,6 +4,7 @@ import { BsThreeDots } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import Actions from './Actions';
 
+
 const UserPost = ({ postId, user, likes, replies, postImg, postTitle }) => {
   const [liked, setLiked] = React.useState(false);
 
@@ -82,6 +83,7 @@ const UserPost = ({ postId, user, likes, replies, postImg, postTitle }) => {
 };
 
 export default UserPost;
+
 
 
 

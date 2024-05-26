@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import UserPost from '../components/UserPost';
 import { Button, Divider, Flex, Text, VStack } from '@chakra-ui/react';
@@ -85,3 +86,4 @@ const Postpage = () => {
 };
 
 export default Postpage;
+

@@ -5,7 +5,9 @@ import {v2 as cloudinary} from 'cloudinary';
 export const signupUser= async (req,res)=>{
     try {
         const {
+
             name,username,password,usertype
+
           
             
         } = req.body;
@@ -17,7 +19,9 @@ export const signupUser= async (req,res)=>{
         }
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
+
         const user = await User.create({name,username,password:hashedPassword,usertype});
+
         const savedUser= await user.save();
         if(savedUser){
             createtoken(savedUser._id,res);
@@ -29,7 +33,9 @@ export const signupUser= async (req,res)=>{
                 username: savedUser.username,
                 bio: savedUser.bio,
                 profilePic: savedUser.profilePic,
+
                 usertype: savedUser.usertype,
+
               
              
             });
@@ -53,7 +59,9 @@ export const signinUser= async (req,res)=>{
             return res.status(401).json({message: 'invailed crendentials'});
         }
         createtoken(user._id,res);
+
         console.log(req.cookies.token)
+
         res.status(200).json({
             message: 'logged in successfully',
            
@@ -62,7 +70,9 @@ export const signinUser= async (req,res)=>{
             username: user.username,
             bio: user.bio,
             profilePic: user.profilePic,
+
             usertype: user.usertype,
+
         })
 
       
@@ -174,6 +184,7 @@ export const getUserprofile= async (req, res) => {
         res.status(400).json({message: error.message})
     }
 }
+
 export const getUserfromId=async (req, res) => {
     const userId=req.params.id;
     try{
@@ -184,3 +195,4 @@ export const getUserfromId=async (req, res) => {
         res.status(400).json({message: error.message})
     }
 }
+

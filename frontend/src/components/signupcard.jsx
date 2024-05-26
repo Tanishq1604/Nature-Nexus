@@ -14,9 +14,11 @@ import {
     useColorModeValue,
     Link,
    
+
     useToast,
     RadioGroup,
     Radio
+
   } from '@chakra-ui/react'
   import { useState } from 'react'
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
@@ -28,7 +30,9 @@ import { userDataAtom } from '../atoms/userAtom';
   export default function Signupcard() {
     const setuser= useSetRecoilState(userDataAtom);
     const toast = useToast();
+
     const[value,setValue]= useState('user');
+
 
     const [showPassword, setShowPassword] = useState(false)
     const setAuth= useSetRecoilState(authScreenAtom);
@@ -36,8 +40,9 @@ import { userDataAtom } from '../atoms/userAtom';
      name:'',
      username:'',
     
-     password:'',
-   
+
+     password:''
+
     })
 
 
@@ -45,13 +50,17 @@ import { userDataAtom } from '../atoms/userAtom';
 
      
       const {name,username,password}=imput;
+
       console.log(value);
+
       const data={
         name,
         username,
       
+
         password,
         usertype:value
+
       }
       try{
         const res= await axios.post('/api/users/signup',data);
@@ -171,6 +180,7 @@ import { userDataAtom } from '../atoms/userAtom';
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
+
               <RadioGroup onChange={setValue} value={value}>
       <HStack >
         <Radio value='user'>user</Radio>
@@ -178,6 +188,7 @@ import { userDataAtom } from '../atoms/userAtom';
        
       </HStack>
     </RadioGroup>
+
               <Stack spacing={10} pt={2}>
                 <Button
                 onClick={submitdata}

@@ -21,6 +21,7 @@ import {
     FiBriefcase,
     FiSettings
 } from 'react-icons/fi'
+import { FaRegTrashCan } from "react-icons/fa6";
 import { IoPawOutline } from 'react-icons/io5'
 import NavItem from './NavItem'
 import { useNavigate } from 'react-router-dom'
@@ -110,7 +111,7 @@ export default function Sidebar() {
                {user.usertype=='ngo'? <NavItem navSize={navSize} icon={IoPawOutline} title="Ngo-contracts" nav="/contracts"/>: null}
                 <NavItem navSize={navSize} icon={FiDollarSign} title="MarketPlace" nav="/marketplace"/>
                 <NavItem navSize={navSize} icon={FiBriefcase} title="Karma" nav="/karma"/>
-               
+                {user.usertype=='ngo'? <NavItem navSize={navSize} icon={FaRegTrashCan} title="TrashOut" nav="/trashout"/>: null}
             </Flex>
 
             <Flex

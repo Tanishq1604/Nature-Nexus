@@ -1,5 +1,6 @@
 import { Post, User } from "../db/connectDB.js";
 
+
 import { v2 as cloudinary } from "cloudinary";
 
 export const createPost = async (req, res) => {
@@ -39,6 +40,7 @@ export const createPost = async (req, res) => {
 		console.log(err);
 	}
 };
+
 
 
 export const getPost =async  (req, res) =>{
@@ -161,6 +163,7 @@ export const myfeed =async  (req, res) =>{
     catch(error){
         res.status(404).json({message:error.message})
     }
+
 }
 export const bulkposts =async  (req, res) => {
     try{
@@ -174,4 +177,5 @@ export const bulkposts =async  (req, res) => {
     catch(error){
         res.status(404).json({message:error.message})
     }
+
 }

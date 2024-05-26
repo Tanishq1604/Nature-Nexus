@@ -4,6 +4,7 @@ dotenv.config();
 
 mongoose.connect(process.env.MONGO_URI)
 console.log("Connecting to")
+
 // models/product.js
 
 
@@ -28,6 +29,7 @@ const productSchema = new mongoose.Schema({
   image: {
     type: String,
     required: true,
+    default:"",
   },
 }, { timestamps: true });
 
@@ -70,6 +72,7 @@ const Product = mongoose.model('Product', productSchema);
         ,bio:{
             type:String,
             default:""
+
         },
         karma:{
             type:Number,
@@ -78,6 +81,7 @@ const Product = mongoose.model('Product', productSchema);
         usertype:{
             type:String,
             default:"user"
+
         }
     
     
@@ -97,6 +101,7 @@ const Product = mongoose.model('Product', productSchema);
         },
         img:{
             type:String,
+
             default:""
            
         },
@@ -110,6 +115,7 @@ const Product = mongoose.model('Product', productSchema);
             default:""
  
            },
+
         likes:{
            type:[mongoose.Schema.Types.ObjectId],
             ref:"User",
@@ -143,4 +149,6 @@ const Product = mongoose.model('Product', productSchema);
     const User=mongoose.model('User',userSchema);
     
     
+
     export {User,Post,Product};
+
