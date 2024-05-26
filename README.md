@@ -1,5 +1,6 @@
 # **Nature Nexus**
 ![Logo](frontend/public/logo.png)
+
 __Where innovation meets bioDiversity__
 
 
@@ -37,7 +38,9 @@ Moreover, the Karma Token system introduces a novel incentive mechanism, rewardi
 Overall, Nature Nexus represents a holistic approach to waste management, leveraging technology, community participation, and incentivization to address pressing environmental challenges and pave the way for a cleaner, more sustainable future.
 
 #__How It Works__
+
 ![Logo](frontend/public/Working.png)
+
 User Participation: Users can post images of waste dumps or problematic areas through the app. This simple interface encourages community involvement by making reporting easy.
 
 NGO Verification: Submitted posts are sent in contract form to our network of partnered NGOs and organizations. These entities verify the accuracy and relevance of the reported data, ensuring that the information is correct and aligns with real-world conditions.
@@ -49,9 +52,11 @@ Sustainable Marketplace: The app features a marketplace where users can use Karm
 Support for Eco-Entrepreneurs: Users who sell bio-items on the marketplace receive financial support from NGOs. This not only promotes the use of sustainable products but also provides economic benefits to those contributing to environmental preservation.
 
 - Map locations of User Posts
+
 ![Logo](frontend/public/Map.jpg)
 
 - Deployment of Contracts
+  
 ![Logo](frontend/public/Okashi.png)
 
 ## **Vision**
