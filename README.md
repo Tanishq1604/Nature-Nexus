@@ -58,7 +58,7 @@ Set Up Environment Variables
 
 Create a .env file in the root directory and add the following variables:
 
-##**Add in backend**
+## **Add in backend**
 - PORT=4000
 - MONGO_URI=<your_mongo_uri>
 - JWT_SECRET=<your_jwt_secret>
@@ -66,12 +66,12 @@ Create a .env file in the root directory and add the following variables:
 - CLOUDINARY_KEY=<your_cloudinary_key>
 - CLOUDINARY_SECRET=<your_cloudinary_secret>
 
-##**Add in Frontend for Smart Contract**
+## **Add in Frontend for Smart Contract**
 - PUBLIC_KEY=<your_public_key>
 - SECRET=<your_secret>
 
 
-###**Start the Application**
+### **Start the Application**
 
 ```bash
 
