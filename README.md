@@ -9,8 +9,8 @@ Nature Nexus is an innovative waste management application designed to tackle th
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+
+
 
 ## **Introduction**
 
@@ -66,15 +66,14 @@ Create a .env file in the root directory and add the following variables:
 - CLOUDINARY_KEY=<your_cloudinary_key>
 - CLOUDINARY_SECRET=<your_cloudinary_secret>
 
-Add in Frontend for Smart Contract
+##**Add in Frontend for Smart Contract**
+- PUBLIC_KEY=<your_public_key>
+- SECRET=<your_secret>
 
-plaintext
-Copy code
-PUBLIC_KEY=<your_public_key>
-SECRET=<your_secret>
-Start the Application
 
-bash
-Copy code
+###**Start the Application**
+
+```bash
+
 npm start
-   
+   ```
