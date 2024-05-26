@@ -8,7 +8,7 @@ Nature Nexus is an innovative waste management application designed to tackle th
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
-- [Usage](#usage)
+
 
 
 
