@@ -4,14 +4,14 @@ import {
     TransactionBuilder,
     Networks,
     BASE_FEE,
-    nativeToScVal, Address
+    nativeToScVal, Address 
 } from "@stellar/stellar-sdk";
 import { userSignTransaction } from './frieghter.js';
 import { getPublicKey } from '@stellar/freighter-api';
 
 let rpcUrl = "https://soroban-testnet.stellar.org";
 let contractAddress = 'CDX3VSAAP43AWM6EO7WKTVJZECPXPD6CZ3ILSQYHUDTMZ26PNMXCB27H';
-
+let public_key = 'GALONDBAKAKRRMXZLQ6VKQOYDE6GJI4D5XE5RKFNAK2AD3DEL7XCOXSO'
 const stringToSymbol = (value) => {
     return nativeToScVal(value, { type: "symbol" })
 }
@@ -95,7 +95,7 @@ async function add_user() {
     try {
         let env = await getPublicKey();
         let name = stringToRustString("Alex");
-        let address = accountToScVal(env);
+        let address = accountToScVal(public_key);
         let amount = intToU32(0);
         let values = [name,address,amount];
         let result_user = await contractInt(env, 'add_party', values);
