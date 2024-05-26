@@ -4,7 +4,7 @@ import { BsThreeDots } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { retrievePublicKey, checkConnection } from "./frieghter.js";
 import { transfer, balance, add_user } from "./soroban";
-// import {isConnected ,requestAccess} from "@stellar/freighter-api";
+import {isConnected ,requestAccess} from "@stellar/freighter-api";
 import {
   Modal,
   ModalOverlay,
@@ -37,7 +37,7 @@ const ContractCard = ({ postId, user, likes, replies, postImg, postTitle }) => {
     return null;
   }
   async function check(){
-    if (await checkConnection()) {
+    if (await isConnected()) {
       alert("Connected to Freighter");
       setConnected(true);
       setButtonText("Connected");
