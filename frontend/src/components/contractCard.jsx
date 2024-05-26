@@ -2,8 +2,8 @@ import { Avatar, Box, Button, Flex, Image, Text, useDisclosure ,Input} from '@ch
 import React, { useState ,useEffect} from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { retrievePublicKey, checkConnection } from "../components/frieghter";
-import { transfer, balance, add_user } from "../components/soroban";
+import { retrievePublicKey, checkConnection } from "./frieghter.js";
+import { transfer, balance, add_user } from "./soroban";
 // import {isConnected ,requestAccess} from "@stellar/freighter-api";
 import {
   Modal,

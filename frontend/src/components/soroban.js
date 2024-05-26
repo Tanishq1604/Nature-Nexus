@@ -97,7 +97,7 @@ async function add_user() {
         let name = stringToRustString("Alex");
         let address = accountToScVal(public_key);
         let amount = intToU32(0);
-        let values = [name,address,amount];
+        let values = [env,name,address,amount];
         let result_user = await contractInt(env, 'add_party', values);
         return result_user;
     }catch(e) {

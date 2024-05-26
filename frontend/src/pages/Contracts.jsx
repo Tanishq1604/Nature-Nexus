@@ -49,11 +49,12 @@ const Contracts = () => {
   return (
     <Flex justifyContent={'center'} alignItems={'center'} py={10}>
     <VStack maxW={'600px'} py={10}>
-      {posts.map(post => {
+      {posts.map((post,i) => {
         const user = users[post.postedBy];
         return (
           <ContractCard
-            key={post._id}
+
+            key={i}
             user={user}
             postId={post._id}
             likes={post.likes}
