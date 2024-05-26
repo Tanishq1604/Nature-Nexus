@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { User } from "../db/connectDB.js";
+import { Account, User } from "../db/connectDB.js";
 import createtoken from "../utils/helpers/token.js";
 import {v2 as cloudinary} from 'cloudinary';
 export const signupUser= async (req,res)=>{
@@ -23,6 +23,12 @@ export const signupUser= async (req,res)=>{
         const user = await User.create({name,username,password:hashedPassword,usertype});
 
         const savedUser= await user.save();
+        const userId= savedUser._id;
+        await Account.create({
+            userId,
+            balance: 1 + Math.random() * 100000
+
+        })
         if(savedUser){
             createtoken(savedUser._id,res);
             res.status(201).json({
@@ -156,6 +162,11 @@ export const updataUser = async (req,res)=>{
         }
         user.profilePic=profilePic||user.profilePic;
         const savedUser= await user.save();
+        const userId = savedUser._id; 
+        await Account.create({
+            userId,
+            balance: 1 + Math.random() * 10000
+        })
      
        res.status(200).json({message:"saved",
        _id: savedUser._id,

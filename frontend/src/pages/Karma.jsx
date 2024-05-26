@@ -2,11 +2,21 @@ import {Button,Card,CardBody,CardFooter,CardHeader,Flex, Heading, Image, SimpleG
 import React, { useState } from 'react';
 import {isConnected} from "@stellar/freighter-api";
 import { userDataAtom } from '../atoms/userAtom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import axios from 'axios';
+import { karmaatom } from '../atoms/karmaAtom';
 // import {add_user,transfer,balance} from '../components/soroban.js';
 
 export default function Karma_button(){
+    const [karma,setkarma]=useRecoilState(karmaatom);
     const toast = useToast();
+    async function getkarma(){
+        const data= await axios.get('/api/account/balance');
+        console.log(data.data);
+        const balance = data.data.balance.toString()
+        setkarma(balance);
+
+    }
  
    const user = useRecoilValue(userDataAtom);
    const [connected, setconnected]= useState(false);
@@ -45,7 +55,7 @@ export default function Karma_button(){
                     <Flex gap={'10px'}>
                         <Image w={'70px'} h={'60px'} src='/karma.png' />
 
-                        <Text fontSize={'3xl'} position={'relative'} top={'10px'} >{user.karma}</Text>
+                        <Text fontSize={'3xl'} position={'relative'} top={'10px'} >{karma}</Text>
                     </Flex>
                 </CardBody>
                 <CardFooter>

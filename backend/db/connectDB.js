@@ -87,6 +87,23 @@ const Product = mongoose.model('Product', productSchema);
     
     
     },{timestamps:true});
+    const accountSchema = new mongoose.Schema({
+        userId:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref:"User",  // Here only if a user record is present in userSchema then only he can add balance 
+            required: true
+        },
+        balance:{
+            type: Number,
+            required: true
+        },
+    });
+    
+    //mongoose.Schema.Types.ObjectId, we're telling Mongoose to expect ObjectId values in that field. 
+    //This allows us to establish relationships between documents in different collections by referencing their ObjectId values.
+    
+    
+    const Account = mongoose.model('Account', accountSchema);
     
     const postSchema= new mongoose.Schema({
       
@@ -150,5 +167,5 @@ const Product = mongoose.model('Product', productSchema);
     
     
 
-    export {User,Post,Product};
+    export {User,Post,Product,Account};
 

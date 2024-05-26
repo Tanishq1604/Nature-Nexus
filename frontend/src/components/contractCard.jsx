@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Flex, Image, Text, useDisclosure ,Input} from '@chakra-ui/react';
+import { Avatar, Box, Button, Flex, Image, Text, useDisclosure ,Input, useToast} from '@chakra-ui/react';
 import React, { useState ,useEffect} from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -14,12 +14,13 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { karmaatom } from '../atoms/karmaAtom';
 import axios from 'axios';
 import { userDataAtom } from '../atoms/userAtom';
 
 const ContractCard = ({ postId, user, likes, replies, postImg, postTitle }) => {
+  const toast = useToast();
   const [hide, setHide] = useState(false);
   const [user1,setuser1]= useRecoilState(userDataAtom)
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -27,6 +28,7 @@ const ContractCard = ({ postId, user, likes, replies, postImg, postTitle }) => {
   const [buttonText, setButtonText] = useState("Connect to Freighter");
   const [inputValue, setInputValue] = useRecoilState(karmaatom);
   const [publicKey, setPublicKey] = useState("");
+  
   let key = retrievePublicKey();
   key.then(publicKey => {
     setPublicKey(publicKey);
@@ -48,10 +50,22 @@ const ContractCard = ({ postId, user, likes, replies, postImg, postTitle }) => {
   }
   async function handleSubmit ()  {
     console.log("Submitted value:", inputValue);
-    const data= await axios.put(`/api/users/karma/${user._id}`,{
-      karma:inputValue
+    const data= await axios.post(`/api/account/transfer`,{
+      amount:inputValue,
+      to:user._id,
+      from:user1._id
     });
-    console.log(data);
+    console.log(data.data);
+    toast({
+      title: 'transaction success',
+      description: `${inputValue} Karma sent`,
+      status:'success',
+      duration: 1000,
+      isClosable: true,
+    })
+   
+
+
     
 
 

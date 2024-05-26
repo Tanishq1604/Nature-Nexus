@@ -2,6 +2,7 @@ import express from 'express';
 const app = express();
 import {v2 as cloudinary} from 'cloudinary';
 import cors from 'cors';
+import accountrouter from './routes/accountRouter.js'
 app.use(cors());
 
 import bodyParser from 'body-parser';
@@ -34,7 +35,7 @@ app.get("/", async (req, res)=>{
 })
 
 
-
+app.use('/api/account',accountrouter)
 
 app.use('/api/users',userRouter);
 app.use('/api/posts',postRouter);
