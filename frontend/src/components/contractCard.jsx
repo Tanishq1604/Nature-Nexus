@@ -1,89 +1,134 @@
-import { Avatar, Box, Button, Flex, Image, Text } from '@chakra-ui/react';
-import React from 'react';
+import { Avatar, Box, Button, Flex, Image, Text, useDisclosure ,Input} from '@chakra-ui/react';
+import React, { useState ,useEffect} from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import Actions from './Actions';
+import { retrievePublicKey, checkConnection } from "../components/frieghter";
+import { transfer, balance, add_user } from "../components/soroban";
+// import {isConnected ,requestAccess} from "@stellar/freighter-api";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react';
 
 const ContractCard = ({ postId, user, likes, replies, postImg, postTitle }) => {
-  const [liked, setLiked] = React.useState(false);
+  const [hide, setHide] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [connected, setConnected] = useState(false);
+  const [buttonText, setButtonText] = useState("Connect to Freighter");
+  const [inputValue, setInputValue] = useState("");
+  const [publicKey, setPublicKey] = useState("");
+  let key = retrievePublicKey();
+  key.then(publicKey => {
+    setPublicKey(publicKey);
+  }).catch(error => {
+    console.error("Error retrieving public key:", error);
+  });
+  if (!user || hide) {
+    return null;
+  }
+  async function check(){
+    if (await checkConnection()) {
+      alert("Connected to Freighter");
+      setConnected(true);
+      setButtonText("Connected");
 
-  if (!user) {
-    return null; 
+      }else{
+        alert("Download Frieghter Extension in your browser"); 
+      }
+  }
+  const handleSubmit = () => {
+    console.log("Submitted value:", inputValue);
+    onClose();
+    accept();
+  }
+
+  async function accept() {
+    console.log("accept");
+    setHide(true);
+  }
+  
+  async function reject() {
+    console.log("reject");
+    setHide(true);
   }
 
   return (
-    <Link to={`/sanjeev5776/post/${postId}`}>
-      <Flex gap={3} mb={4} py={5} minW={'500px'} maxH={'500px'}>
-        <Flex flexDirection={"column"} alignItems={"center"}>
-          <Avatar size='md' name={user.username} src={user.profilePic} />
-          <Box w='1px' h={"full"} bg='gray.light' my={2}></Box>
-          <Box position={"relative"} w={"full"}>
-            <Avatar
-              size='xs'
-              name='John doe'
-              src='https://bit.ly/dan-abramov'
-              position={"absolute"}
-              top={"0px"}
-              left='15px'
-              padding={"2px"}
-            />
-            <Avatar
-              size='xs'
-              name='John doe'
-              src='https://bit.ly/sage-adebayo'
-              position={"absolute"}
-              bottom={"0px"}
-              right='-5px'
-              padding={"2px"}
-            />
-            <Avatar
-              size='xs'
-              name='John doe'
-              src='https://bit.ly/prosper-baba'
-              position={"absolute"}
-              bottom={"0px"}
-              left='4px'
-              padding={"2px"}
-            />
-          </Box>
-        </Flex>
-        <Flex flex={1} flexDirection={"column"} gap={2}>
-          <Flex justifyContent={"space-between"} w={"full"}>
-            <Flex w={"full"} alignItems={"center"}>
-              <Text fontSize={"sm"} fontWeight={"bold"}>
-                {user.username}
-              </Text>
-              <Image src='/verified.png' w={4} h={4} ml={1} />
+    <>
+      <Link>
+        <Flex gap={3} mb={4} py={5} minW={'500px'} maxH={'500px'}>
+          <Flex flexDirection={"column"} alignItems={"center"}>
+            <Avatar size='md' name={user.username} src={user.profilePic} />
+            <Box w='1px' h={"full"} bg='gray.light' my={2}></Box>
+            <Box position={"relative"} w={"full"}></Box>
+          </Flex>
+          <Flex flex={1} flexDirection={"column"} gap={2}>
+            <Flex justifyContent={"space-between"} w={"full"}>
+              <Flex w={"full"} alignItems={"center"}>
+                <Text fontSize={"sm"} fontWeight={"bold"}>
+                  {user.username}
+                </Text>
+                <Image src='/verified.png' w={4} h={4} ml={1} />
+              </Flex>
+              <Flex gap={4} alignItems={"center"}>
+                <Text fontStyle={"sm"} color={"gray.light"}>ld</Text>
+                <BsThreeDots />
+              </Flex>
             </Flex>
-            <Flex gap={4} alignItems={"center"}>
-              <Text fontStyle={"sm"} color={"gray.light"}>ld</Text>
-              <BsThreeDots />
+            <Text fontSize={"sm"}>{postTitle}</Text>
+            <Box borderRadius={6} overflow={"hidden"} border={"1px solid"} borderColor={"gray.light"}>
+              <Image src={postImg} w={"full"} maxW={"450px"} maxH={"200px"} />
+            </Box>
+            <Flex gap={2} alignItems={"center"}>
+              <Box w={0.5} h={0.5} borderRadius={"full"} bg={"gray.light"}></Box>
+              <Flex justifyContent={"center"} alignItems={"center"} w={"100%"}>
+                <Button marginLeft={"110px"} bg={"gray.light"} onClick={() => { onOpen()}}>accept</Button>
+                <Button marginLeft={"30px"} bg={"gray.light"} onClick={reject}>reject</Button>
+              </Flex>
             </Flex>
           </Flex>
-          <Text fontSize={"sm"}>{postTitle}</Text>
-          <Box borderRadius={6} overflow={"hidden"} border={"1px solid"} borderColor={"gray.light"}>
-            <Image src={postImg} w={"full"} />
-          </Box>
-          <Flex gap={3} my={1}><Actions liked={liked} setLiked={setLiked} /></Flex>
-          <Flex gap={2} alignItems={"center"}>
-            <Text color={"gray.light"} fontSize='sm'>
-              {replies} replies
-            </Text>
-            <Box w={0.5} h={0.5} borderRadius={"full"} bg={"gray.light"}></Box>
-            <Text color={"gray.light"} fontSize='sm'>
-              {likes + (liked ? 1 : 0)} likes
-              <Button bg={"gray.light"}>accept</Button>
-              <Button bg={"gray.light"}>reject</Button>
-            </Text>
-          </Flex>
         </Flex>
-      </Flex>
-    </Link>
+      </Link>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            {connected ? "Reward Karma token to User" : "Connect to your Wallet" }
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {connected ? (<>
+                <Text>Connected to {publicKey}</Text>
+                <Input placeholder="Enter Karma Token to Give" value={inputValue} onChange={(e) => setInputValue(e.target.value)}  />
+              </>
+              ) : (
+                <Button onClick={check}>{buttonText}</Button>
+            )}
+            
+          </ModalBody>
+          <ModalFooter>
+            {connected ? (
+                <>
+                  <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
+                    Submit
+                  </Button>
+                  <Button variant="ghost" onClick={onClose}>
+                    Cancel
+                  </Button>
+                </>
+              ) : null}
+            
+            
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
   );
 };
 
 export default ContractCard;
-
-
-
-
