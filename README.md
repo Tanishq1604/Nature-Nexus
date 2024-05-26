@@ -46,3 +46,35 @@ With India generating approximately 62 million tons of waste annually and a shor
    ```bash
    git clone https://github.com/Tanishq1604/Nature-Nexus.git
    cd Nature-Nexus
+
+
+2. **Install Dependencies**
+
+```bash
+npm install
+Set Up Environment Variables
+
+```
+
+Create a .env file in the root directory and add the following variables:
+
+##**Add in backend**
+- PORT=4000
+- MONGO_URI=<your_mongo_uri>
+- JWT_SECRET=<your_jwt_secret>
+- CLOUDINARY_NAME=<your_cloudinary_name>
+- CLOUDINARY_KEY=<your_cloudinary_key>
+- CLOUDINARY_SECRET=<your_cloudinary_secret>
+
+Add in Frontend for Smart Contract
+
+plaintext
+Copy code
+PUBLIC_KEY=<your_public_key>
+SECRET=<your_secret>
+Start the Application
+
+bash
+Copy code
+npm start
+   
