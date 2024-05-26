@@ -16,11 +16,11 @@ const Postpage = () => {
 
   async function callPost() {
     try {
-      const postRes = await axios.get(`http://localhost:4000/api/posts/${pid}`);
+      const postRes = await axios.get(`https://nature-nexus-qdw6.onrender.com/api/posts/${pid}`);
       console.log(postRes.data);
       setCurr(postRes.data);
 
-      const userRes = await axios.get(`http://localhost:4000/api/users/${postRes.data.post.postedBy}`);
+      const userRes = await axios.get(`https://nature-nexus-qdw6.onrender.com/api/users/${postRes.data.post.postedBy}`);
       console.log(userRes.data);
       setCurrUser(userRes.data.user);
     } catch (error) {

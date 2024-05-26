@@ -12,7 +12,7 @@ const Explore = () => {
 
   async function fetchPosts() {
     try {
-      const res = await axios.post("http://localhost:4000/api/posts/bulk", {}, {
+      const res = await axios.post("https://nature-nexus-qdw6.onrender.com/api/posts/bulk", {}, {
         headers: {
           "Content-Type": "application/json",
         },
