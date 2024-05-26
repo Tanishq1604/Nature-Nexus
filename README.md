@@ -1,8 +1,8 @@
-Nature Nexus Waste Management
+**Nature Nexus Waste Management**\n
 Nature Nexus is an innovative waste management application designed to tackle the pressing issue of waste management in Delhi by leveraging blockchain technology. Our app uses the Soroban SDK, React, and Express to create a decentralized, community-driven platform that incentivizes waste reporting and management through the use of Karma Tokens.
 
-**Table of Contents**
-*Introduction*
+**Table of Contents**\n
+*Introduction*\n
 Features
 Tech Stack
 Installation
