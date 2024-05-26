@@ -126,7 +126,7 @@ export default function Sidebar() {
                         <MenuButton>
                 <Flex mt={4} align="center">
                             
-                    <Avatar size="sm" src={user.profilePic} />
+                    <Avatar size="sm" src={user.profilePic} name={user.name} bg={'green.300'}/>
                     <Flex flexDir="column" ml={4} display={navSize == "small" ? "none" : "flex"}>
                         <Heading as="h3" size="sm">{user.name}</Heading>
                         <Text color="gray">{user.usertype}</Text>
