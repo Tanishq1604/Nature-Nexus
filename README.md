@@ -21,7 +21,7 @@ __Where innovation meets bioDiversity__
 
 
 ## **Introduction**
-Nature Nexus is a cutting-edge waste management application tailored to address Delhi's urgent waste management challenges, employing blockchain technology for efficiency. Powered by the Soroban SDK, React, and Express, it establishes a decentralized, community-centric platform. Users are incentivized to report and manage waste responsibly through Karma Tokens, fostering a collaborative approach to waste reduction. Join us in revolutionizing waste management practices for a cleaner, greener Delhi.
+Nature Nexus is a cutting-edge waste management application tailored to address India's urgent waste management challenges, employing blockchain technology for efficiency. Powered by the Soroban SDK, React, and Express, it establishes a decentralized, community-centric platform. Users are incentivized to report and manage waste responsibly through Karma Tokens, fostering a collaborative approach to waste reduction. Join us in revolutionizing waste management practices for a cleaner, greener Delhi.
 With India generating approximately 62 million tons of waste annually and a shortage of personnel in the government sector, innovative solutions are urgently needed. Nature Nexus addresses this challenge by privatizing aspects of the Municipal Corporation of Delhi (MCD) sector and leveraging community engagement and NGO partnerships. Through our app, users can report waste issues, earn Karma Tokens, and purchase eco-friendly products in our marketplace.
 
 ## **Description**
@@ -135,5 +135,4 @@ Frontend :- npm run dev
 Backend :- npm start
    ```
 
-### **Deployed Application**
-[https://nature-nexus-frontend.vercel.app/](https://nature-nexus-frontend.vercel.app/)
+
