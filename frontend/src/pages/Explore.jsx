@@ -12,7 +12,7 @@ const Explore = () => {
 
   async function fetchPosts() {
     try {
-      const res = await axios.post("https://nature-nexus-qdw6.onrender.com/api/posts/bulk", {}, {
+      const res = await axios.post("http://localhost:4000/api/posts/bulk", {}, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -27,7 +27,7 @@ const Explore = () => {
     const fetchUsers = async () => {
       try {
         const userIds = Array.from(new Set(posts.map(post => post.postedBy).filter(id => id !== undefined)));
-        const userResponses = await Promise.all(userIds.map(id => axios.get(`https://nature-nexus-qdw6.onrender.com/api/users/${id}`)));
+        const userResponses = await Promise.all(userIds.map(id => axios.get(`http://localhost:4000/api/users/${id}`)));
         const userData = userResponses.map(res => res.data.user);
         const userMap = userData.reduce((acc, user) => {
           acc[user._id] = user;

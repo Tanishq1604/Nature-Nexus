@@ -9,16 +9,24 @@ import  mongoose  from "mongoose";
 // const { protectedroute } = require("../middleware/protectedroute.js");
 
 const router = express.Router();
-router.get("/balance", async (req,res)=>{
-    const account = await Account.findOne({
-        userId: req.body.userId,
+router.get("/balance", async (req, res) => {
+    try {
+        const id = req.query.userId;
+        console.log(id);
+        const account = await Account.findOne({ userId: id });
+        
+        if (!account) {
+            return res.status(404).json({ error: 'Account not found' });
+        }
 
-    });
-    const bal= account.balance;
-    res.json({
-        balance: bal
-    })
+        const bal = account.balance;
+        res.json({ balance: bal });
+    } catch (error) {
+        console.error('Error fetching account balance:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
+
 
 router.post("/transfer",  async (req,res)=>{
     try{
@@ -26,6 +34,7 @@ router.post("/transfer",  async (req,res)=>{
 
     session.startTransaction(); // starts the transaction in this session 
     const  {amount1,to} = req.body;
+    console.log(amount1,to);
     const amount= Number(amount1);
     const account = await Account.findOne({
         userId: req.body.userId,

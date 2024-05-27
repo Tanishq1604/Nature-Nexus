@@ -60,7 +60,7 @@ const CreatePostmarket = () => {
 	const handleCreatePost = async () => {
 		setLoading(true);
 		try {
-			const res = await fetch("/api/product", {
+			const res = await fetch("http://localhost:4000/api/product", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

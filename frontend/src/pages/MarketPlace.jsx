@@ -6,7 +6,7 @@ const MarketPlace = () => {
   const [products, setProducts] = useState([]);
 
   async function getMarketPlace() {
-    const res = await fetch('/api/product');
+    const res = await fetch('http://localhost:4000/api/product');
     const data = await res.json();
     setProducts(data);
   }

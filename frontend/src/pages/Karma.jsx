@@ -1,5 +1,5 @@
 import {Button,Card,CardBody,CardFooter,CardHeader,Flex, Heading, Image, SimpleGrid, Text, useToast} from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {isConnected} from "@stellar/freighter-api";
 import { userDataAtom } from '../atoms/userAtom';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -8,17 +8,34 @@ import { karmaatom } from '../atoms/karmaAtom';
 // import {add_user,transfer,balance} from '../components/soroban.js';
 
 export default function Karma_button(){
+    const user = useRecoilValue(userDataAtom);
+   
     const [karma,setkarma]=useRecoilState(karmaatom);
     const toast = useToast();
-    async function getkarma(){
-        const data= await axios.get('/api/account/balance');
-        console.log(data.data);
-        const balance = data.data.balance.toString()
-        setkarma(balance);
-
-    }
+    const getkarma = async () => {
+        try {
+            const response = await fetch(`http://localhost:4000/api/account/balance?userId=${user._id}`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log(data);
+            const balance = data.balance.toString();
+            setkarma(balance);
+        } catch (error) {
+            console.error('Error fetching balance:', error);
+        }
+    };
+    
+   
+    
+    useEffect(()=>{
+        getkarma();
+    },[]);
  
-   const user = useRecoilValue(userDataAtom);
+  
    const [connected, setconnected]= useState(false);
    const [buttonText, setButtonText] = useState("Connect to Freighter");
     async function check(){

@@ -47,7 +47,7 @@ import {
       e.preventDefault();
      
       try{
-        const res= await axios.put(`/api/users/update/${user._id}`,{
+        const res= await axios.put(`http://localhost:4000/api/users/update/${user._id}`,{
        
           ...input,
 

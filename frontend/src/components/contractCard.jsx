@@ -50,10 +50,10 @@ const ContractCard = ({ postId, user, likes, replies, postImg, postTitle }) => {
   }
   async function handleSubmit ()  {
     console.log("Submitted value:", inputValue);
-    const data= await axios.post(`/api/account/transfer`,{
-      amount:inputValue,
+    const data= await axios.post("http://localhost:4000/api/account/transfer",{
+      amount1:inputValue,
       to:user._id,
-      from:user1._id
+      userId:user1._id
     });
     console.log(data.data);
     toast({

@@ -10,7 +10,7 @@ var mapObject ;
 var mapplsClassObject=  new  mappls();
 const data= [{lat:28.5512908, lng:77.2680928},{lat:29.5512908, lng:79.2680928},{lat:28.5512908, lng:80.2680928}]
 async function getdata(){
-    const d= await axios.post('/api/posts/bulk');
+    const d= await axios.post('http://localhost:4000/api/posts/bulk');
     console.log(d.data.posts);
     const res= d.data.posts.map(post => {
         return {

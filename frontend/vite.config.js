@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'https://nature-nexus-qdw6.onrender.com'
+      '/api': 'http://localhost:4000'
     }
   }
 });

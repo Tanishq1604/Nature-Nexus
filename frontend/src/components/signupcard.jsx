@@ -63,7 +63,7 @@ import { userDataAtom } from '../atoms/userAtom';
 
       }
       try{
-        const res= await axios.post('/api/users/signup',data);
+        const res= await axios.post('http://localhost:4000/api/users/signup',data);
         console.log(res);
         if(res.status){
 

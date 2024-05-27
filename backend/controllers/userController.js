@@ -23,14 +23,17 @@ export const signupUser= async (req,res)=>{
         const user = await User.create({name,username,password:hashedPassword,usertype});
 
         const savedUser= await user.save();
-        const userId= savedUser._id;
-        await Account.create({
-            userId,
-            balance: 1 + Math.random() * 100000
-
-        })
+      
+        
         if(savedUser){
             createtoken(savedUser._id,res);
+            const userId= savedUser._id;
+            console.log(userId);
+            await Account.create({
+                userId,
+                balance: 1 + Math.random() * 100000
+    
+            })
             res.status(201).json({
                 message: 'user saved successfully',
                
