@@ -27,6 +27,7 @@ import NavItem from './NavItem'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { userDataAtom } from '../atoms/userAtom'
+import axios from 'axios';
 
 export default function Sidebar() {
     const toast =useToast();
@@ -52,14 +53,18 @@ export default function Sidebar() {
           
            
             
+            const  res= await axios.post('/api/users/logout');
+            console.log(res.data);
+          
+           
+            
             toast({
               title: 'Logged Out',
-              description: "logout successfully",
+              description: res.data.message,
               status:'success',
               duration: 1000,
               isClosable: true,
             })
-            
       
       
            

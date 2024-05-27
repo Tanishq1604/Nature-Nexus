@@ -10,7 +10,7 @@ router.use(cookieParser());
 router.get('/checking',(req,res)=>{
     res.send('Hello World');
 })
-router.post('/create',protectedroute,createPost)
+router.post('/create',createPost)
 
 router.get('/:id',getPost)
 

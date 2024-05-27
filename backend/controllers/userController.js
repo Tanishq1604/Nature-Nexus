@@ -31,7 +31,7 @@ export const signupUser= async (req,res)=>{
             console.log(userId);
             await Account.create({
                 userId,
-                balance: 1 + Math.random() * 100000
+                balance: 1 + Math.random() * 1000
     
             })
             res.status(201).json({
@@ -70,7 +70,7 @@ export const signinUser= async (req,res)=>{
         }
         createtoken(user._id,res);
 
-        console.log(req.cookies.token)
+      
 
         res.status(200).json({
             message: 'logged in successfully',

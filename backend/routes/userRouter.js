@@ -18,8 +18,10 @@ router.post('/logout',logoutUser)
 router.post('/follow/:id',protectedroute,followunfollowUser)
 router.put('/update/:id',protectedroute,updataUser)
 
+
 router.get('/:id',getUserfromId)
 router.put('/karma/:id',showkarma);
+router.post('/logout',logoutUser);
 
 
 export default router;

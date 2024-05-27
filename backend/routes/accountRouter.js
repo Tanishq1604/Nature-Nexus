@@ -36,6 +36,7 @@ router.post("/transfer",  async (req,res)=>{
     const  {amount1,to} = req.body;
     console.log(amount1,to);
     const amount= Number(amount1);
+    console.log(amount);
     const account = await Account.findOne({
         userId: req.body.userId,
     }).session(session);
