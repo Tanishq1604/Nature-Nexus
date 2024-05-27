@@ -1,9 +1,9 @@
-# **Nature Nexus**
+# **Nature Nexus**   [Video](https://drive.google.com/file/d/1jDbsLdpS1TP6UNXqvwUTW1xBZsKVSODX/view?usp=sharing)
 ![Logo](frontend/public/logo.png)
 
 __Where innovation meets bioDiversity__
 
-[Video link](https://drive.google.com/file/d/1jDbsLdpS1TP6UNXqvwUTW1xBZsKVSODX/view?usp=sharing)
+
 
 
 
